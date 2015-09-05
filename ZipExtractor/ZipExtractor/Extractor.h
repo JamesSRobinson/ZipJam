@@ -6,4 +6,4 @@
 
 using namespace std;
 
-int zipcompress(FILE *source, FILE *dest, int level);
+int zipExtract(FILE *source, FILE *dest);
