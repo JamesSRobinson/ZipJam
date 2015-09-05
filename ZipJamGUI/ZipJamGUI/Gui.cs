@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+
 
 namespace ZipJamGUI
 {
@@ -24,7 +26,17 @@ namespace ZipJamGUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // call archive exe
+            if (archiveName == null){
+                MessageBox.Show("Select A File");
+            }
+
+            else {
+                // call archive exe
+                Process compress = new Process();
+                compress.StartInfo.FileName = ".\\lib\\ZipArchiver.exe";
+                compress.StartInfo.Arguments = archiveName;
+                compress.Start();
+            }
         }
 
         private void archiveInput_TextChanged(object sender, EventArgs e)
@@ -89,9 +101,23 @@ namespace ZipJamGUI
         private void Extract_Click(object sender, EventArgs e)
         {
             //check file is a zip
+            string ext = Path.GetExtension(extractName);
 
-            
-            // call extract exe
+            if (extractName == null) {
+                MessageBox.Show("Select A File");
+            }
+
+            else if (ext != ".zip") {
+                MessageBox.Show("Not a ZIP file, try again.");
+            }
+
+            else {
+                // call extract exe
+                Process compress = new Process();
+                compress.StartInfo.FileName = ".\\lib\\ZipExtractor.exe";
+                compress.StartInfo.Arguments = extractName;
+                compress.Start();
+            }
 
         }
 
